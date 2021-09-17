@@ -1,5 +1,7 @@
 GenericSearchMeta:
   $ref: ./generic/searchMeta.yml
+JwtAccessModel:
+  $ref: ./jwt/access/model.yml
 LocationPatch:
   $ref: ./location/patch.yml
 LocationPost:

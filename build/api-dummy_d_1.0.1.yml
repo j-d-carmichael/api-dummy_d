@@ -11,9 +11,9 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 schemes:
+  - http
   - https
 host: api.example.com
-basePath: /v1
 securityDefinitions:
   apiKey:
     type: apiKey
@@ -162,6 +162,11 @@ definitions:
         type: number
       limit:
         type: number
+  JwtAccessModel:
+    type: object
+    properties:
+      userId:
+        type: string
   LocationPatch:
     type: object
     properties:

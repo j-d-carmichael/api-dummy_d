@@ -15,10 +15,10 @@
     }
   },
   "schemes": [
+    "http",
     "https"
   ],
   "host": "api.example.com",
-  "basePath": "/v1",
   "securityDefinitions": {
     "apiKey": {
       "type": "apiKey",
@@ -240,6 +240,14 @@
         },
         "limit": {
           "type": "number"
+        }
+      }
+    },
+    "JwtAccessModel": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
         }
       }
     },
