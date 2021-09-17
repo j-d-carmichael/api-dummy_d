@@ -1,0 +1,22 @@
+tags:
+  - weather
+summary: weather data
+description: Create a new weather record.
+operationId: weatherPost
+parameters:
+  - in: body
+    name: weatherPost
+    description: Optional description in *Markdown*
+    required: true
+    schema:
+      $ref: ../../definitions/weather/post.yml
+responses:
+  '200':
+    description: Successful temp creation
+    schema:
+      $ref: ../../definitions/weather/model.yml
+  '404':
+    description: Not found
+  '422':
+    description: Invalid form data provided
+x-permission: apiDummyDCreateWeather

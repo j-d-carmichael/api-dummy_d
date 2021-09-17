@@ -1,0 +1,17 @@
+GenericSearchMeta:
+  $ref: ./generic/searchMeta.yml
+LocationPatch:
+  $ref: ./location/patch.yml
+LocationPost:
+  $ref: ./location/post.yml
+LocationPut:
+  $ref: ./location/put.yml
+WeatherModel:
+  $ref: ./weather/model.yml
+WeatherModels:
+  $ref: ./weather/models.yml
+WeatherPost:
+  $ref: ./weather/post.yml
+WeatherPut:
+  $ref: ./weather/put.yml
+
