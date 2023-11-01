@@ -1,12 +1,21 @@
 <body>
 <div id="controls"></div>
-<div id="result"></div>
-
+<div style="display:flex;">
+   <div style="width:45%">
+     <h2>Progress</h2>
+     <div id="result"></div>
+   </div>
+   <div style="width:45%">
+     <h2>Progress</h2>
+     <div id="summary"></div>
+   </div>
+</div>
 <script type="module">
   import SpeedTest from 'https://cdn.skypack.dev/@cloudflare/speedtest';
 
   const controlEl = document.getElementById('controls');
   const resEl = document.getElementById('result');
+  const sumEl = document.getElementById('summary');
 
   const engine = new SpeedTest({
     autoStart: false
@@ -20,7 +29,7 @@
     results[type].push(engine.results.raw);
   };
   engine.onFinish = results => {
-    setResult(results.getSummary());
+    setSummary(results.getSummary());
     for (const resultsKey in results) {
       if (typeof results[resultsKey] === 'function') {
         console.log(resultsKey, results[resultsKey]());
@@ -40,6 +49,13 @@
     resTxt.textContent = JSON.stringify(obj, null, 2);
     resEl.textContent = '';
     resEl.appendChild(resTxt);
+  }
+
+  function setSummary (obj) {
+    const resTxt = document.createElement('pre');
+    resTxt.textContent = JSON.stringify(obj, null, 2);
+    sumEl.textContent = '';
+    sumEl.appendChild(resTxt);
   }
 </script>
 </body>
