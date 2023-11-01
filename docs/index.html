@@ -1,7 +1,5 @@
 <html>
 <head>
-   <script src="https://cdn.jsdelivr.net/npm/pretty-print-json@2.0.4/dist/pretty-print-json.min.js"></script>
-   <link href="https://cdn.jsdelivr.net/npm/pretty-print-json@2.0.4/dist/css/pretty-print-json.min.css" rel="stylesheet"/>
 </head>
 <body>
    <div id="controls"></div>
@@ -28,13 +26,13 @@
         let results = {};
         engine.onRunningChange = running => controlEl.textContent = running ? 'Running...' : 'Finished!';
         engine.onResultsChange = ({ type }) => {
-          !engine.isFinished && setResult(engine.results.raw);
+          !engine.isFinished && setResult(engine.results.raw, resEl);
           console.log(type);
           results[type] = results[type] || [];
           results[type].push(engine.results.raw);
         };
         engine.onFinish = results => {
-          sumEl.innerHTML = prettyPrintJson.toHtml(obj);
+           setResult(engine.results.raw, sumEl);
 
            for (const resultsKey in results) {
             if (typeof results[resultsKey] === 'function') {
@@ -50,8 +48,11 @@
         playButton.onclick = () => engine.play();
         controlEl.appendChild(playButton);
       
-        function setResult (obj) {
-          resEl.innerHTML = prettyPrintJson.toHtml(obj);
+        function setResult (obj, wrapper) {
+          const resTxt = document.createElement('pre');
+          resTxt.textContent = JSON.stringify(obj, null, 2);
+          wrapper.textContent = '';
+          wrapper.appendChild(resTxt);
         }
    </script>
 </body>
