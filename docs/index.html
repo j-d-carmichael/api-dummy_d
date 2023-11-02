@@ -7,7 +7,7 @@
     const resEl = document.getElementById('result');
     const sumEl = document.getElementById('summary');
 
-    var resultsJson = ''
+    var resultsJson = 'No results yet...'
     
     const engine = new SpeedTest({
       autoStart: false
@@ -45,6 +45,10 @@
       wrapper.textContent = '';
       wrapper.appendChild(resTxt);
     }
+
+    function whatsapp() { 
+        window.open(`whatsapp://send?text=${resultsJson}`) 
+    } 
     
   </script>
 </head>
@@ -53,10 +57,7 @@
 
   <div>
     <h2>Final results</h2>
-    <a
-      href="`whatsapp://send?text=${resultsJson}`"
-      data-action="share/whatsapp/share"  
-      target="_blank"> Share results to WhatsApp </a>   
+    <button onclick="whatsapp()"> Share results to WhatsApp </button>   
     <div id="summary">...</div>
   </div>
   <div>
