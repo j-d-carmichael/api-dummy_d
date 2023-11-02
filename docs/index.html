@@ -7,7 +7,7 @@
   <ol>
     <li><div id="controls"></div></li>
     <li>
-      <p>Wait for the results (will automatically appear below)</p
+      <p>Wait for the results (will automatically appear below)</p>
       <div id="summary"></div>
     </li>
     <li>
@@ -15,6 +15,7 @@
     </li>
     <li>
       <p>Progress output (not important to share):</h2>  
+      <div>Tests run: <span id="testCounter">0</span></div>
       <div id="result"></div>
     </li>
   </ol>
@@ -35,11 +36,14 @@
     });
     window.results = {};
     engine.onRunningChange = running => controlEl.textContent = running ? 'Running...' : 'Finished!';
+    let counter = 0
     engine.onResultsChange = ({ type }) => {
       !engine.isFinished && setResult(engine.results.raw, resEl);
-      console.log(type);
+      console.log(counter, type);
+      document.getElementById('testCounter').textContent = counter;
       results[type] = results[type] || [];
       results[type].push(engine.results.raw);
+      ++counter
     };
     engine.onFinish = results => {
       const summary = results.getSummary();
