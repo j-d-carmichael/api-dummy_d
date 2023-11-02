@@ -37,7 +37,7 @@
     const engine = new SpeedTest({
       autoStart: false
     });
-    let results = {};
+    window.results = {};
     engine.onRunningChange = running => controlEl.textContent = running ? 'Running...' : 'Finished!';
     engine.onResultsChange = ({ type }) => {
       !engine.isFinished && setResult(engine.results.raw, resEl);
@@ -48,7 +48,7 @@
     engine.onFinish = results => {
       const summary = results.getSummary();
       setResult(summary, sumEl);
-      resultsJson = JSON.enscode(summary);
+      window.results = JSON.enscode(summary);
   
       for (const resultsKey in results) {
         if (typeof results[resultsKey] === 'function') {
@@ -71,7 +71,7 @@
       wrapper.appendChild(resTxt);
     }
 
-    function shareResults() { 
+    window.shareResults = () => { 
         window.open(`whatsapp://send?text=${resultsJson}`) 
     } 
     
