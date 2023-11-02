@@ -6,7 +6,9 @@
     const controlEl = document.getElementById('controls');
     const resEl = document.getElementById('result');
     const sumEl = document.getElementById('summary');
-  
+
+    var resultsJson = ''
+    
     const engine = new SpeedTest({
       autoStart: false
     });
@@ -19,7 +21,9 @@
       results[type].push(engine.results.raw);
     };
     engine.onFinish = results => {
-      setResult(results.getSummary(), sumEl);
+      const summary = results.getSummary();
+      setResult(summary, sumEl);
+      resultsJson = JSON.enscode(summary);
   
       for (const resultsKey in results) {
         if (typeof results[resultsKey] === 'function') {
@@ -41,7 +45,7 @@
       wrapper.textContent = '';
       wrapper.appendChild(resTxt);
     }
-
+    
   </script>
 </head>
 <body>
@@ -49,6 +53,10 @@
 
   <div>
     <h2>Final results</h2>
+    <a
+      href="`whatsapp://send?text=${resultsJson}`"
+      data-action="share/whatsapp/share"  
+      target="_blank"> Share results to WhatsApp </a>   
     <div id="summary">...</div>
   </div>
   <div>
