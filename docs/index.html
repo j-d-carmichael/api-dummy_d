@@ -1,6 +1,29 @@
 <html>
 <head>
   <meta content="viewport-fit=cover,width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+</head>
+<body>
+  <h1>How to run and what to share:</h1>
+  <ol>
+    <li><div id="controls"></div></li>
+    <li>
+      <p>Wait for the results (will automatically appear below)</p
+      <div id="summary">
+        <pre><i>Final results will appear here</i></pre>
+      </div>
+    </li>
+    <li>
+      Copy and paste the results above and send. Or, click "share to whatsapp": <button onclick="shareResults()"> Share results to WhatsApp </button>
+    </li>
+    <li>
+      <p>Progress output (not important to share):</h2>  
+      <div id="result">
+        <pre><i>Progress results will appear here after you start the test, takes 30-60secs</i></pre>
+      </div>
+    </li>
+  </ol>
+
+
   
   <script type="module">
     import SpeedTest from 'https://cdn.skypack.dev/@cloudflare/speedtest';
@@ -48,30 +71,10 @@
       wrapper.appendChild(resTxt);
     }
 
-    function whatsapp() { 
+    function shareResults() { 
         window.open(`whatsapp://send?text=${resultsJson}`) 
     } 
     
   </script>
-</head>
-<body>
-  <h1>How to run and what to share:</h1>
-  <ol>
-    <li><div id="controls"></div></li>
-    <li>
-      <p>Wait for the results (will automatically appear here)</p>
-      <h2>Final results</h2>  
-      <div id="summary">...</div>
-    </li>
-    <li>
-      Copy and paste the results above and send. Or, click "share to whatsapp": <button onclick="whatsapp()"> Share results to WhatsApp </button>
-    </li>
-  </ol>
-
-
-  <div>
-    <h2>Testing in progress... (just to see what is going on, don't send this to people, they don't need it unless asked for)</h2>
-    <div id="result"></div>
-  </div>
 </body>
 </html>
